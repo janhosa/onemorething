@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #faf8f4; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  ::selection { background: #b5352a; color: #faf8f4; }
+</style>
+</helmet>
+
+<div style="position:relative;background:#faf8f4;color:#161310;">
+
+  <!-- SCROLL PROGRESS -->
+  <div style="position:fixed;top:0;left:0;right:0;height:3px;background:rgba(22,19,16,.07);z-index:300;">
+    <div style="height:100%;background:#b5352a;width:{{ scrollPct }}%;"></div>
+  </div>
+
+  <!-- FLOATING LOGO -->
+  <div style="position:fixed;top:20px;left:24px;z-index:299;padding:8px 16px;background:rgba(250,248,244,.75);backdrop-filter:blur(8px);border-radius:99px;border:1px solid rgba(22,19,16,.08);font:500 11px/1 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#161310;">one more thing</div>
+
+  <!-- FLOATING CTA -->
+  <a href="#kontakt" style="position:fixed;bottom:24px;right:24px;z-index:299;padding:13px 22px;background:#161310;color:#faf8f4;border-radius:99px;font:500 12px/1 'Inter',sans-serif;letter-spacing:.03em;text-decoration:none;box-shadow:0 8px 24px rgba(22,19,16,.25);">Gespräch →</a>
+
+  <!-- HERO -->
+  <div style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px clamp(24px,6vw,64px) 64px;">
+    <div style="font-family:'Inter',sans-serif;font-weight:300;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8f8b83;margin-bottom:clamp(28px,5vw,56px);">Wien · KI-Strategie · Build · Sparring</div>
+    <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(64px,11vw,168px);line-height:.92;letter-spacing:-.01em;">
+      <div>Nicht</div>
+      <div><span style="background:#161310;color:#faf8f4;padding:0 14px 10px;margin-left:-8px;display:inline-block;">Daten.</span></div>
+      <div><em style="font-style:italic;color:#b5352a;font-weight:500;">Taten.</em></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,48px);margin-top:clamp(40px,7vw,72px);padding-top:clamp(28px,4vw,40px);border-top:1px solid rgba(22,19,16,.1);align-items:end;{{ heroSubStyle }}">
+      <p style="font-family:'Piazzolla',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2vw,24px);line-height:1.55;color:#3a352e;max-width:520px;">Ideen gibt es genug. Wir helfen dir, sie in die Welt zu bringen — mit KI als Werkzeug, Erfahrung als Kompass, Tempo das überrascht.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+        <a href="mailto:jan@janhosa.com" style="font:400 16px 'Inter',sans-serif;color:#161310;text-decoration:none;border-bottom:1px solid rgba(22,19,16,.15);padding-bottom:2px;">jan@janhosa.com</a>
+        <a href="tel:+436641352616" style="font:400 16px 'Inter',sans-serif;color:#161310;text-decoration:none;border-bottom:1px solid rgba(22,19,16,.15);padding-bottom:2px;">+43 664 1352616</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPLIT: FOTO + QUOTE -->
+  <div ref="{{ setSplitRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));border-top:1px solid rgba(22,19,16,.1);{{ splitStyle }}">
+    <div style="position:relative;overflow:hidden;min-height:520px;">
+      <div ref="{{ setHeroImgWrapRef }}" style="position:absolute;inset:-6% -0%;">
+        <img ref="{{ setHeroImgRef }}" src="uploads/_SA_3160.jpg" alt="Jan Hosa" style="width:100%;height:112%;object-fit:cover;object-position:center top;display:block;">
+      </div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(22,19,16,.35) 0%, transparent 45%);"></div>
+    </div>
+    <div style="background:#161310;padding:clamp(48px,7vw,88px) clamp(32px,5vw,72px);display:flex;flex-direction:column;justify-content:center;">
+      <p style="font-family:'Piazzolla',serif;font-weight:500;font-size:clamp(30px,4vw,54px);line-height:1.12;color:#faf8f4;margin-bottom:28px;">Irgendwann wollten wir nicht immer nur <em style="font-style:italic;color:#c9705f;font-weight:400;">Daten produzieren.</em></p>
+      <p style="font: 300 15px/1.7 'Inter',sans-serif; color: #FAF8F4CC; max-width: 460px">Also haben wir aufgehört zu reden. Und angefangen zu bauen. Das war der Anfang von DO SOMETHING GREAT Society — und der Beginn von etwas das wir jetzt mit anderen teilen.</p>
+    </div>
+  </div>
+
+  <!-- ANGEBOT — horizontal scroll-jacked -->
+  <div ref="{{ setAngebotOuterRef }}" style="position:relative;border-top:1px solid rgba(22,19,16,.1);">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;">
+      <div style="padding:0 clamp(24px,6vw,64px);margin-bottom:clamp(32px,5vw,56px);{{ angebotHeadStyle }}">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(40px,5.5vw,76px);line-height:.95;margin-bottom:16px;">Vier Momente.</div>
+        <p style="font:300 16px/1.6 'Inter',sans-serif;color:#6b665c;max-width:480px;">Jeder kennt einen davon. Wir helfen dir, vom Moment zum Ergebnis zu kommen — konkret, schnell, ohne Umwege.</p>
+      </div>
+
+      <div ref="{{ setAngebotTrackRef }}" style="display:flex;gap:24px;padding:0 clamp(24px,6vw,64px);will-change:transform;">
+
+        <div style="flex:none;width:clamp(320px,42vw,560px);background:#f2efe9;padding:44px 40px;{{ angebot.s0 }}">
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:15px;color:#b5352a;margin-bottom:24px;">01</div>
+          <svg viewBox="0 0 36 36" style="width:32px;height:32px;stroke:#161310;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:28px;">
+            <circle cx="18" cy="18" r="3"></circle><line x1="18" y1="4" x2="18" y2="10"></line><line x1="18" y1="26" x2="18" y2="32"></line><line x1="4" y1="18" x2="10" y2="18"></line><line x1="26" y1="18" x2="32" y2="18"></line><line x1="8" y1="8" x2="12.5" y2="12.5"></line><line x1="23.5" y1="23.5" x2="28" y2="28"></line><line x1="28" y1="8" x2="23.5" y2="12.5"></line><line x1="12.5" y1="23.5" x2="8" y2="28"></line>
+          </svg>
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:28px;margin-bottom:14px;">Du hast eine Idee.</div>
+          <p style="font:300 15px/1.65 'Inter',sans-serif;color:#6b665c;">Und weißt nicht wo anfangen. Vielleicht ist sie noch unscharf, vielleicht hast du Angst dass sie nicht funktioniert. Wir nehmen sie ernst — stellen die unbequemen Fragen, bringen Struktur rein und bauen gemeinsam den ersten echten Schritt.</p>
+          <div style="margin-top: 24px; font-family: 'Piazzolla',serif; font-style: italic; font-size: 16px; color: #B5352A; font-weight: 500">Kein Konzeptpapier. Ein Ergebnis.</div>
+        </div>
+
+        <div style="flex:none;width:clamp(320px,42vw,560px);background:#f2efe9;padding:44px 40px;{{ angebot.s1 }}">
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:15px;color:#b5352a;margin-bottom:24px;">02</div>
+          <svg viewBox="0 0 36 36" style="width:32px;height:32px;stroke:#161310;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:28px;">
+            <polyline points="6,30 6,6 30,6"></polyline><polyline points="6,30 30,6"></polyline><line x1="6" y1="14" x2="14" y2="14"></line><line x1="14" y1="6" x2="14" y2="14"></line>
+          </svg>
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:28px;margin-bottom:14px;">Du hast ein Business.</div>
+          <p style="font:300 15px/1.65 'Inter',sans-serif;color:#6b665c;">Und hörst überall KI. Aber was konkret — und was bringt es dir wirklich? Wir zeigen was funktioniert, für dein Business, deine Prozesse, dein Team. Keine Abhängigkeit. Du verstehst am Ende was du tust — und warum.</p>
+          <div style="margin-top: 24px; font-family: 'Piazzolla',serif; font-style: italic; font-size: 16px; color: #B5352A; font-weight: 500">Nicht Theorie. Können.</div>
+        </div>
+
+        <div style="flex:none;width:clamp(320px,42vw,560px);background:#f2efe9;padding:44px 40px;{{ angebot.s2 }}">
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:15px;color:#b5352a;margin-bottom:24px;">03</div>
+          <svg viewBox="0 0 36 36" style="width:32px;height:32px;stroke:#161310;fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:28px;">
+            <circle cx="16" cy="18" r="10"></circle><line x1="22" y1="18" x2="32" y2="18"></line><polyline points="27,13 32,18 27,23"></polyline>
+          </svg>
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:28px;margin-bottom:14px;">Du willst mehr.</div>
+          <p style="font:300 15px/1.65 'Inter',sans-serif;color:#6b665c;">Aus deiner Idee, deinem Business, deinen Prozessen. Schneller, schärfer, skalierbarer. Wir setzen KI dort ein wo sie wirklich hilft — und liefern etwas das heute schon funktioniert.</p>
+          <div style="margin-top: 24px; font-family: 'Piazzolla',serif; font-style: italic; font-size: 16px; color: #B5352A; font-weight: 500">Nicht Versprechen. Ergebnisse.</div>
+        </div>
+
+        <div style="flex:none;width:clamp(320px,42vw,560px);background:#161310;padding:44px 40px;{{ angebot.s3 }}">
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:15px;color:#c9705f;margin-bottom:24px;">04</div>
+          <svg viewBox="0 0 36 36" style="width:32px;height:32px;stroke:rgba(250,248,244,.5);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:28px;">
+            <path d="M8,10 C8,10 4,18 8,26"></path><path d="M28,10 C28,10 32,18 28,26"></path><circle cx="18" cy="18" r="2.5"></circle><line x1="10" y1="18" x2="15.5" y2="18"></line><line x1="20.5" y1="18" x2="26" y2="18"></line>
+          </svg>
+          <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:28px;margin-bottom:14px;color:#faf8f4;">Du willst einfach mal reden.</div>
+          <p style="font: 300 15px/1.65 'Inter',sans-serif; color: #FAF8F4CC">Sortieren. Denken. Herausfinden ob eine Idee trägt — oder wie KI konkret in deinen Alltag passt. Ein ehrliches Gespräch mit jemandem der es selbst gerade macht.</p>
+          <div style="margin-top: 24px; font-family: 'Piazzolla',serif; font-style: italic; font-size: 16px; color: #FFFFFF; font-weight: 500">Nicht reden. Verstehen.</div>
+        </div>
+
+      </div>
+
+      <div style="padding:0 clamp(24px,6vw,64px);margin-top:28px;display:flex;align-items:center;gap:14px;">
+        <div style="flex:1;height:2px;background:rgba(22,19,16,.08);position:relative;overflow:hidden;">
+          <div ref="{{ setPinDotRef }}" style="position:absolute;left:0;top:0;bottom:0;width:0%;background:#b5352a;"></div>
+        </div>
+        <span style="font:300 11px/1 'Inter',sans-serif;color:#8f8b83;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;">scroll</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEWEIS -->
+  <div style="border-top:1px solid rgba(22,19,16,.1);padding:clamp(56px,8vw,96px) clamp(24px,6vw,64px);">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:56px;margin-bottom:48px;align-items:start;">
+      <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(44px,6vw,84px);line-height:.95;">Kein Pitch.<br><em style="font-style:italic;color:#b5352a;font-weight:500;">Ein Laden.</em></div>
+      <div>
+        <p style="font:300 17px/1.75 'Inter',sans-serif;color:#6b665c;margin-bottom:20px;">DO SOMETHING GREAT Society ist nicht in einer Präsentation entstanden. Es ist eine funktionierende Co-Working-Holzwerkstatt in Wien — mit eigener Marke, Community, Buchungssystem und Loyaltyprogramm.</p>
+        <p style="font:300 17px/1.75 'Inter',sans-serif;color:#6b665c;margin-bottom:24px;"><span style="color:#161310;font-weight:400;">Konzipiert, aufgebaut, betrieben.</span> Buchungssystem, Brand Manual, Partner-Websites, KI-gestützte Apps und Prozesse — alles entstanden, während der Laden lief.</p>
+        <a href="https://dosomethinggreat.work" target="_blank" style="font:500 12px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#b5352a;text-decoration:none;">dosomethinggreat.work →</a>
+      </div>
+    </div>
+
+    <div ref="{{ setBeweisStripRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3px;margin-bottom:3px;">
+      <div style="position:relative;overflow:hidden;height:340px;{{ beweisStrip.s0 }}">
+        <img src="uploads/jan_work-2.jpg" alt="DSGS Werkstatt" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(22,19,16,.4) 0%, transparent 55%);"></div>
+        <span style="position:absolute;bottom:16px;left:20px;font:400 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,248,244,.65);">Werkstatt Wien 17</span>
+      </div>
+      <div style="position:relative;overflow:hidden;height:340px;{{ beweisStrip.s1 }}">
+        <img src="uploads/jan_work-9.jpg" alt="In Aktion" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(22,19,16,.4) 0%, transparent 55%);"></div>
+        <span style="position:absolute;bottom:16px;left:20px;font:400 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,248,244,.65);">In Aktion</span>
+      </div>
+    </div>
+
+    <div ref="{{ setBeweisStatsRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:3px;{{ beweisStats.s0 }}">
+      <div style="background:#161310;color:#faf8f4;padding:32px 28px;">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:44px;margin-bottom:4px;">{{ beweisStats.c0 }}</div>
+        <div style="font: 300 12px 'Inter',sans-serif; color: #FAF8F4CC">Werkstattfläche Wien</div>
+      </div>
+      <div style="background:#161310;color:#faf8f4;padding:32px 28px;">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:44px;margin-bottom:4px;">{{ beweisStats.c1 }}</div>
+        <div style="font: 300 12px 'Inter',sans-serif; color: #FAF8F4CC">Views, ein Reel</div>
+      </div>
+      <div style="background:#161310;color:#faf8f4;padding:32px 28px;">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:44px;margin-bottom:4px;">{{ beweisStats.c2 }}</div>
+        <div style="font: 300 12px 'Inter',sans-serif; color: #FAF8F4CC">Live-Touchpoints / Jahr</div>
+      </div>
+      <div style="background:#161310;color:#faf8f4;padding:32px 28px;">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:44px;margin-bottom:4px;">{{ beweisStats.c3 }}</div>
+        <div style="font: 300 12px 'Inter',sans-serif; color: #FAF8F4CC">Agenturbudget beim Start</div>
+      </div>
+    </div>
+
+    <p style="margin-top:36px;padding-top:28px;border-top:1px solid rgba(22,19,16,.1);font:300 15px/1.65 'Inter',sans-serif;color:#6b665c;max-width:640px;">Neben DSGS: <span style="color:#161310;font-weight:400;">KI-gestützte Apps, digitale Brand Manuals, Websites, Pitch-Decks und maßgeschneiderte Tools</span> — entwickelt für echte Nutzung, nicht für Präsentationen.</p>
+  </div>
+
+  <!-- STORY -->
+  <div style="border-top:1px solid rgba(22,19,16,.1);padding:clamp(56px,8vw,96px) clamp(24px,6vw,64px);">
+    <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(44px,6vw,84px);line-height:.95;margin-bottom:56px;max-width:700px;">Warum wir.</div>
+
+    <div ref="{{ setStoryLogosRef }}" style="margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(22,19,16,.1);{{ storyLogos.s0 }}">
+      <span style="display:block;font:500 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8f8b83;margin-bottom:18px;">Stationen</span>
+      <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:center;">
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">Ogilvy</span>
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">BBDO Wien</span>
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">medienhaus+partner</span>
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">ProSiebenSat.1 PULS 4</span>
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">OCEAN</span>
+        <span style="font:500 13px 'Inter',sans-serif;letter-spacing:.04em;color:rgba(22,19,16,.32);">one more thing GmbH</span>
+      </div>
+    </div>
+
+    <div ref="{{ setStorySpeakingRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:3px;margin-bottom:48px;{{ storySpeaking.s0 }}">
+      <div style="overflow:hidden;height:380px;">
+        <img src="uploads/Strategie_Austria_6_10_2021-039.jpg" alt="Jan Hosa speaking" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+      </div>
+      <div style="background:rgba(22,19,16,.04);padding:clamp(36px,5vw,52px) clamp(32px,4vw,48px);display:flex;flex-direction:column;justify-content:center;">
+        <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:32px;margin-bottom:16px;line-height:1.1;">Wir reden nicht nur.<br>Wir machen.</div>
+        <p style="font:300 16px/1.7 'Inter',sans-serif;color:#6b665c;">Vorträge, Workshops, Sparrings — wir teilen was wir wirklich wissen. Nicht was gut klingt. Und dann setzen wir es um.</p>
+      </div>
+    </div>
+
+    <div ref="{{ setStoryGridRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3px;margin-bottom:64px;">
+      <div style="background:rgba(22,19,16,.04);padding:32px 26px 40px;{{ storyGrid.s0 }}">
+        <span style="display:block;font:500 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b5352a;margin-bottom:18px;">Marke · Medien · Kreation</span>
+        <div style="font:500 16px/1.35 'Inter',sans-serif;margin-bottom:12px;">Wie Menschen &amp; Marken wirklich funktionieren</div>
+        <p style="font:300 14px/1.6 'Inter',sans-serif;color:#6b665c;">30+ Jahre mit BMW, Magenta, BAT, JTI, Ogilvy, BBDO. Wir wissen, wie Botschaften wirken — und warum die meisten es falsch angehen.</p>
+      </div>
+      <div style="background:rgba(22,19,16,.04);padding:32px 26px 40px;{{ storyGrid.s1 }}">
+        <span style="display:block;font:500 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b5352a;margin-bottom:18px;">Digital · Innovation · KI</span>
+        <div style="font:500 16px/1.35 'Inter',sans-serif;margin-bottom:12px;">Wie digitale Innovation wirklich funktioniert</div>
+        <p style="font:300 14px/1.6 'Inter',sans-serif;color:#6b665c;">Startup-Erfahrung, Corporate Innovation, KI-Expertise. Wir wissen was funktioniert — und was nur gut klingt auf einer Folie.</p>
+      </div>
+      <div style="background:rgba(22,19,16,.04);padding:32px 26px 40px;{{ storyGrid.s2 }}">
+        <span style="display:block;font:500 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b5352a;margin-bottom:18px;">Gründer · Macher</span>
+        <div style="font:500 16px/1.35 'Inter',sans-serif;margin-bottom:12px;">Wie Ideen echte Unternehmen werden</div>
+        <p style="font:300 14px/1.6 'Inter',sans-serif;color:#6b665c;">DSGS, one more thing GmbH, OCEAN Kreativnetzwerk, nextone — aufgebaut mit allem was dazugehört: Hochs, Fehler, Learnings.</p>
+      </div>
+      <div style="background:rgba(22,19,16,.04);padding:32px 26px 40px;{{ storyGrid.s3 }}">
+        <span style="display:block;font:500 10px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#b5352a;margin-bottom:18px;">KI · Heute · Täglich</span>
+        <div style="font:500 16px/1.35 'Inter',sans-serif;margin-bottom:12px;">KI die wirklich funktioniert</div>
+        <p style="font:300 14px/1.6 'Inter',sans-serif;color:#6b665c;">Wir nutzen KI täglich operativ — nicht um darüber zu reden, sondern um damit zu bauen. In echten Projekten, mit echten Ergebnissen.</p>
+      </div>
+    </div>
+
+    <div ref="{{ setBigQuoteRef }}" style="{{ bigQuote.s0 }}">
+      <p style="font-family:'Piazzolla',serif;font-weight:600;font-style:italic;font-size:clamp(28px,4vw,52px);line-height:1.15;color:rgba(22,19,16,.28);max-width:900px;">„KI kann man nur effizient nutzen, wenn man weiß was man will — <span style="color:#161310;">und weiß, wie man die richtigen Fragen stellt.“</span></p>
+    </div>
+  </div>
+
+  <!-- FÜR WEN -->
+  <div style="border-top:1px solid rgba(22,19,16,.1);padding:clamp(56px,8vw,96px) clamp(24px,6vw,64px);">
+    <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(44px,6vw,84px);line-height:.95;margin-bottom:56px;">Für wen.</div>
+    <div ref="{{ setFuerwenRef }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:3px;">
+      <div style="background:rgba(22,19,16,.04);padding:clamp(36px,5vw,52px) clamp(32px,4vw,44px);{{ fuerwen.s0 }}">
+        <div style="font:500 18px 'Inter',sans-serif;margin-bottom:16px;">Founders &amp; Early Stage</div>
+        <p style="font:300 16px/1.7 'Inter',sans-serif;color:#6b665c;">Du hast eine Idee und willst wissen, ob sie fliegt — <span style="color:#161310;font-weight:400;">bevor du alles drauf setzt.</span> Kein Umweg, kein Overhead. Der Deal muss passen — das erste Gespräch kostet nichts.</p>
+      </div>
+      <div style="background:rgba(22,19,16,.04);padding:clamp(36px,5vw,52px) clamp(32px,4vw,44px);{{ fuerwen.s1 }}">
+        <div style="font:500 18px 'Inter',sans-serif;margin-bottom:16px;">Unternehmen &amp; Teams</div>
+        <p style="font:300 16px/1.7 'Inter',sans-serif;color:#6b665c;">Ein funktionierendes Business, das das nächste Ding sucht. <span style="color:#161310;font-weight:400;">Neue Produkte, neue Prozesse, neue Möglichkeiten</span> — mit KI als echtem Hebel. Nicht als Versprechen. Als Ergebnis.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div id="kontakt" ref="{{ setCtaRef }}" style="background:#161310;padding:clamp(64px,10vw,110px) clamp(24px,6vw,64px);{{ cta.s0 }}">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:56px;align-items:center;">
+      <div style="font-family:'Piazzolla',serif;font-weight:600;font-size:clamp(52px,8vw,116px);line-height:.9;color:#faf8f4;">Euer<br><em style="font-style:italic;color:#c9705f;font-weight:500;">one more thing.</em></div>
+      <div>
+        <p style="font:300 16px/1.65 'Inter',sans-serif;color:rgba(250,248,244,.6);margin-bottom:44px;">Kein Formular. Kein Funnel. Einfach melden — und wir reden. 30 Minuten reichen für den Anfang.</p>
+        <div>
+          <div style="border-top:1px solid rgba(250,248,244,.2);padding:20px 0;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font:500 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,244,.4);">Mail</span>
+            <a href="mailto:jan@janhosa.com" style="font:300 19px 'Inter',sans-serif;color:#faf8f4;text-decoration:none;">jan@janhosa.com</a>
+          </div>
+          <div style="border-top:1px solid rgba(250,248,244,.2);border-bottom:1px solid rgba(250,248,244,.2);padding:20px 0;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font:500 11px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,248,244,.4);">Telefon</span>
+            <a href="tel:+436641352616" style="font:300 19px 'Inter',sans-serif;color:#faf8f4;text-decoration:none;">+43 664 1352616</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="background:#161310;padding:22px clamp(24px,6vw,64px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border-top:1px solid rgba(250,248,244,.08);">
+    <span style="font:400 12px 'Inter',sans-serif;color:rgba(250,248,244,.2);">one more thing GmbH · Wien · 2026</span>
+  </div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    scrollPct: 0,
+    revealed: {
+      split: false, angebot: false, beweisStrip: false, beweisStats: false,
+      storyLogos: false, storySpeaking: false, storyGrid: false, bigQuote: false,
+      fuerwen: false, cta: false
+    },
+    counters: [0, 0, 0, 0]
+  };
+
+  constructor(props) {
+    super(props);
+    this.groupRefs = {};
+    this._elMap = new Map();
+    this._pinExtra = 0;
+    this._ticking = false;
+    this._lastPct = 0;
+
+    this.setHeroImgWrapRef = (el) => { this.heroImgWrapEl = el; };
+    this.setHeroImgRef = (el) => { this.heroImgEl = el; };
+    this.setAngebotOuterRef = (el) => { this.pinOuterEl = el; this._registerGroup('angebot', el); };
+    this.setAngebotTrackRef = (el) => { this.pinTrackEl = el; };
+    this.setPinDotRef = (el) => { this.pinDotEl = el; };
+    this.setSplitRef = (el) => this._registerGroup('split', el);
+    this.setBeweisStripRef = (el) => this._registerGroup('beweisStrip', el);
+    this.setBeweisStatsRef = (el) => this._registerGroup('beweisStats', el);
+    this.setStoryLogosRef = (el) => this._registerGroup('storyLogos', el);
+    this.setStorySpeakingRef = (el) => this._registerGroup('storySpeaking', el);
+    this.setStoryGridRef = (el) => this._registerGroup('storyGrid', el);
+    this.setBigQuoteRef = (el) => this._registerGroup('bigQuote', el);
+    this.setFuerwenRef = (el) => this._registerGroup('fuerwen', el);
+    this.setCtaRef = (el) => this._registerGroup('cta', el);
+
+    this.onScroll = this.onScroll.bind(this);
+    this.onResize = this.onResize.bind(this);
+  }
+
+  _registerGroup(name, el) {
+    if (!el) return;
+    this.groupRefs[name] = el;
+    this._elMap.set(el, name);
+  }
+
+  componentDidMount() {
+    this._observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const name = this._elMap.get(entry.target);
+          if (name && !this.state.revealed[name]) {
+            this.setState((s) => ({ revealed: { ...s.revealed, [name]: true } }));
+            if (name === 'beweisStats') this.startCounters();
+          }
+          this._observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    Object.values(this.groupRefs).forEach((el) => this._observer.observe(el));
+
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('load', this.onResize);
+
+    requestAnimationFrame(() => this.measurePin());
+    setTimeout(() => this.measurePin(), 500);
+
+    setTimeout(() => this.setState({ heroReady: true }), 50);
+  }
+
+  componentWillUnmount() {
+    if (this._observer) this._observer.disconnect();
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('load', this.onResize);
+  }
+
+  measurePin() {
+    if (!this.pinTrackEl || !this.pinOuterEl) return;
+    const trackWidth = this.pinTrackEl.scrollWidth;
+    const vw = window.innerWidth;
+    this._pinExtra = Math.max(trackWidth - vw + 64, 0);
+    this.pinOuterEl.style.height = `calc(100vh + ${this._pinExtra}px)`;
+    this.handleScrollFrame();
+  }
+
+  onResize() { this.measurePin(); }
+
+  onScroll() {
+    if (!this._ticking) {
+      this._ticking = true;
+      requestAnimationFrame(() => { this.handleScrollFrame(); this._ticking = false; });
+    }
+  }
+
+  handleScrollFrame() {
+    const scrollTop = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? Math.min(100, Math.max(0, (scrollTop / max) * 100)) : 0;
+    if (Math.abs(pct - this._lastPct) > 0.25) {
+      this._lastPct = pct;
+      this.setState({ scrollPct: pct });
+    }
+
+    if (this.heroImgWrapEl) {
+      const r = this.heroImgWrapEl.getBoundingClientRect();
+      const t = Math.max(-40, Math.min(40, r.top * 0.08));
+      if (this.heroImgEl) this.heroImgEl.style.transform = `translateY(${t}px)`;
+    }
+
+    if (this.pinOuterEl && this.pinTrackEl) {
+      const r = this.pinOuterEl.getBoundingClientRect();
+      const progress = this._pinExtra > 0 ? Math.min(1, Math.max(0, -r.top / this._pinExtra)) : 0;
+      this.pinTrackEl.style.transform = `translateX(${-progress * this._pinExtra}px)`;
+      if (this.pinDotEl) this.pinDotEl.style.width = (progress * 100) + '%';
+    }
+  }
+
+  startCounters() {
+    const targets = [800, 1.3, 900, 0];
+    const start = performance.now();
+    const dur = 1400;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const p = Math.min(1, (now - start) / dur);
+      const e = ease(p);
+      this.setState({ counters: targets.map((t) => t * e) });
+      if (p < 1) requestAnimationFrame(tick);
+      else this.setState({ counters: targets });
+    };
+    requestAnimationFrame(tick);
+  }
+
+  cardStyle(revealed, delaySeconds, ty) {
+    const y = ty == null ? 36 : ty;
+    return `opacity:${revealed ? 1 : 0};transform:translateY(${revealed ? 0 : y}px);transition:opacity .8s cubic-bezier(.16,1,.3,1) ${delaySeconds}s, transform .8s cubic-bezier(.16,1,.3,1) ${delaySeconds}s;`;
+  }
+
+  renderVals() {
+    const r = this.state.revealed;
+    const c = this.state.counters;
+    return {
+      scrollPct: this.state.scrollPct,
+      heroSubStyle: this.state.heroReady
+        ? 'opacity:1;transform:translateY(0);transition:opacity 1s cubic-bezier(.16,1,.3,1) .15s, transform 1s cubic-bezier(.16,1,.3,1) .15s;'
+        : 'opacity:0;transform:translateY(20px);',
+      setHeroImgWrapRef: this.setHeroImgWrapRef,
+      setHeroImgRef: this.setHeroImgRef,
+      splitStyle: this.cardStyle(r.split, 0, 44),
+      setSplitRef: this.setSplitRef,
+      setAngebotOuterRef: this.setAngebotOuterRef,
+      setAngebotTrackRef: this.setAngebotTrackRef,
+      setPinDotRef: this.setPinDotRef,
+      angebotHeadStyle: this.cardStyle(r.angebot, 0, 24),
+      angebot: {
+        s0: this.cardStyle(r.angebot, 0.05, 40),
+        s1: this.cardStyle(r.angebot, 0.12, 40),
+        s2: this.cardStyle(r.angebot, 0.19, 40),
+        s3: this.cardStyle(r.angebot, 0.26, 40)
+      },
+      setBeweisStripRef: this.setBeweisStripRef,
+      beweisStrip: {
+        s0: this.cardStyle(r.beweisStrip, 0, 40),
+        s1: this.cardStyle(r.beweisStrip, 0.12, 40)
+      },
+      setBeweisStatsRef: this.setBeweisStatsRef,
+      beweisStats: {
+        s0: this.cardStyle(r.beweisStats, 0, 30),
+        c0: Math.round(c[0]) + ' m²',
+        c1: c[1].toFixed(1).replace('.', ',') + ' Mio',
+        c2: '~' + Math.round(c[2]),
+        c3: '0'
+      },
+      setStoryLogosRef: this.setStoryLogosRef,
+      storyLogos: { s0: this.cardStyle(r.storyLogos, 0, 20) },
+      setStorySpeakingRef: this.setStorySpeakingRef,
+      storySpeaking: { s0: this.cardStyle(r.storySpeaking, 0, 40) },
+      setStoryGridRef: this.setStoryGridRef,
+      storyGrid: {
+        s0: this.cardStyle(r.storyGrid, 0, 32),
+        s1: this.cardStyle(r.storyGrid, 0.08, 32),
+        s2: this.cardStyle(r.storyGrid, 0.16, 32),
+        s3: this.cardStyle(r.storyGrid, 0.24, 32)
+      },
+      setBigQuoteRef: this.setBigQuoteRef,
+      bigQuote: { s0: this.cardStyle(r.bigQuote, 0, 30) },
+      setFuerwenRef: this.setFuerwenRef,
+      fuerwen: {
+        s0: this.cardStyle(r.fuerwen, 0, 32),
+        s1: this.cardStyle(r.fuerwen, 0.1, 32)
+      },
+      setCtaRef: this.setCtaRef,
+      cta: { s0: this.cardStyle(r.cta, 0, 30) }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

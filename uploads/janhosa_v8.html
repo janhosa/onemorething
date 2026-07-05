@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>one more thing — Nicht Daten. Taten.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f0ede8;
+  --ink: #1c1510;
+  --mid: #6e6b65;
+  --faint: rgba(28,21,16,0.1);
+  --w: #c8440e;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 99;
+  padding: 0 48px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(240,237,232,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--faint);
+}
+
+.nav-name {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav-r { display: flex; gap: 32px; }
+.nav-r a {
+  font-size: 12px;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-r a:hover { color: var(--ink); }
+.nav-r .hi { color: var(--w); font-weight: 500; }
+
+/* ── HERO ── */
+.hero {
+  padding-top: 60px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.hero-bar {
+  border-bottom: 1px solid var(--faint);
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-bar-l {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid);
+}
+
+.hero-bar-r { font-size: 11px; color: var(--mid); }
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px;
+}
+
+.hero-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(100px, 14vw, 200px);
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.hero-h .invert {
+  display: inline-block;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0 12px 8px;
+  margin-left: -8px;
+}
+
+.hero-h .accent { color: var(--w); }
+
+.hero-sub-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 40px 48px;
+  border-top: 1px solid var(--faint);
+  align-items: end;
+}
+
+.hero-tagline {
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.hero-tagline strong { font-weight: 500; }
+
+.hero-contact-block { display: flex; flex-direction: column; gap: 2px; align-items: flex-end; }
+.hero-contact-block a {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faint);
+  transition: border-color 0.2s, color 0.2s;
+  padding-bottom: 2px;
+}
+.hero-contact-block a:hover { color: var(--w); border-color: var(--w); }
+
+/* ── PHOTO / STATEMENT SPLIT ── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 580px;
+  border-top: 1px solid var(--faint);
+}
+
+.split-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.split-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.split-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,21,16,0.35) 0%, transparent 50%);
+}
+
+.split-right {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--faint);
+}
+
+.split-quote {
+  flex: 1;
+  padding: 60px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--ink);
+}
+
+.split-quote p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1.05;
+  color: var(--bg);
+  letter-spacing: 0.01em;
+  margin-bottom: 32px;
+}
+
+.split-quote p em {
+  font-style: normal;
+  color: var(--w);
+}
+
+.split-quote-sub {
+  font-size: 15px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 300 !important;
+  color: rgba(240,237,232,0.55) !important;
+  line-height: 1.65 !important;
+  letter-spacing: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── ANGEBOT ── */
+.angebot { border-top: 1px solid var(--faint); }
+
+.angebot-header {
+  padding: 80px 48px 40px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
+  align-items: end;
+  border-bottom: 1px solid var(--faint);
+}
+
+.angebot-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 8vw, 110px);
+  line-height: 0.9;
+  color: var(--ink);
+}
+
+.angebot-intro {
+  max-width: 480px;
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.angebot-list { list-style: none; }
+
+.angebot-item {
+  border-bottom: 1px solid var(--faint);
+  display: grid;
+  grid-template-columns: 72px 56px 1fr 1fr;
+  align-items: start;
+  transition: background 0.25s;
+  cursor: default;
+}
+
+.angebot-item:hover { background: rgba(28,21,16,0.03); }
+.angebot-item:hover .ai-num { color: var(--w); }
+
+.ai-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(28,21,16,0.15);
+  padding: 36px 0 36px 48px;
+  transition: color 0.3s;
+}
+
+.ai-icon {
+  padding: 38px 0 0 8px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.ai-icon svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--mid);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s;
+}
+
+.angebot-item:hover .ai-icon svg { stroke: var(--w); }
+
+.ai-body {
+  padding: 36px 40px 36px 24px;
+  border-left: 1px solid var(--faint);
+}
+
+.ai-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.ai-desc {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.ai-right {
+  padding: 36px 48px;
+  border-left: 1px solid var(--faint);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--mid);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.angebot-item.dark { background: var(--ink); }
+.angebot-item.dark:hover { background: #241c16; }
+.angebot-item.dark .ai-num { color: rgba(240,237,232,0.1); }
+.angebot-item.dark:hover .ai-num { color: var(--w); }
+.angebot-item.dark .ai-body { border-color: rgba(240,237,232,0.08); }
+.angebot-item.dark .ai-icon { border-color: rgba(240,237,232,0.08); }
+.angebot-item.dark .ai-icon svg { stroke: rgba(240,237,232,0.4); }
+.angebot-item.dark:hover .ai-icon svg { stroke: var(--w); }
+.angebot-item.dark .ai-title { color: var(--bg); }
+.angebot-item.dark .ai-desc { color: rgba(240,237,232,0.5); }
+.angebot-item.dark .ai-right { border-color: rgba(240,237,232,0.08); color: rgba(240,237,232,0.3); }
+
+/* ── BEWEIS ── */
+.beweis {
+  border-top: 1px solid var(--faint);
+  padding: 80px 48px;
+}
+
+.beweis-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 48px;
+  align-items: start;
+}
+
+.beweis-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.92;
+  color: var(--ink);
+}
+.beweis-h em { color: var(--w); font-style: normal; }
+
+.beweis-text p {
+  font-size: 17px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.beweis-text strong { color: var(--ink); font-weight: 400; }
+
+.dsgs-link {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--w);
+  text-decoration: none;
+}
+
+/* Photo strip */
+.beweis-strip {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3px;
+  height: 300px;
+  margin-bottom: 3px;
+}
+
+.beweis-cell {
+  overflow: hidden;
+  position: relative;
+}
+
+.beweis-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.beweis-cell:hover img { transform: scale(1.03); }
+
+.beweis-cell-label {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.6);
+  z-index: 2;
+}
+
+.beweis-cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,21,16,0.4) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.beweis-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+
+.bs {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 32px 28px;
+}
+
+.bs-n {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--bg);
+}
+
+.bs-l {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+}
+
+.beweis-aside {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--faint);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+  max-width: 640px;
+}
+.beweis-aside em { color: var(--ink); font-style: normal; font-weight: 400; }
+
+/* ── STORY ── */
+.story {
+  border-top: 1px solid var(--faint);
+  padding: 80px 48px;
+}
+
+.story-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.92;
+  color: var(--ink);
+  margin-bottom: 64px;
+  max-width: 700px;
+}
+
+/* Agentur logos */
+.logo-strip {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--faint);
+}
+
+.logo-strip-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.agency-logos {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.agency-logo {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(28,21,16,0.3);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+.agency-logo:hover { color: var(--ink); }
+
+/* Speaking photo */
+.story-speaking {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin-bottom: 48px;
+  height: 360px;
+}
+
+.story-speaking-img {
+  overflow: hidden;
+  position: relative;
+}
+
+.story-speaking-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.story-speaking-text {
+  background: rgba(28,21,16,0.04);
+  padding: 52px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-speaking-text h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--ink);
+  margin-bottom: 16px;
+  line-height: 1;
+}
+
+.story-speaking-text p {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+  margin-bottom: 64px;
+}
+
+.sg {
+  background: rgba(28,21,16,0.04);
+  padding: 36px 28px 44px;
+}
+
+.sg-era {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--w);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.sg h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.sg p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.big-quote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.0;
+  color: rgba(28,21,16,0.25);
+  max-width: 900px;
+}
+.big-quote em { color: var(--ink); font-style: normal; }
+
+/* ── FÜR WEN ── */
+.fuerwen {
+  border-top: 1px solid var(--faint);
+  padding: 80px 48px;
+}
+
+.fw-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.92;
+  color: var(--ink);
+  margin-bottom: 64px;
+}
+
+.fw-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.fw-card {
+  background: rgba(28,21,16,0.04);
+  padding: 52px 44px;
+}
+
+.fw-card h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.fw-card p {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--mid);
+  line-height: 1.7;
+}
+.fw-card strong { color: var(--ink); font-weight: 400; }
+
+/* ── CTA ── */
+.cta {
+  background: var(--w);
+  padding: 100px 48px;
+}
+
+.cta-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.cta-h {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 9vw, 130px);
+  line-height: 0.88;
+  color: var(--bg);
+}
+
+.cta-note {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.65);
+  line-height: 1.65;
+  margin-bottom: 48px;
+}
+
+.cta-contact-item {
+  border-top: 1px solid rgba(240,237,232,0.2);
+  padding: 22px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.cta-contact-item:last-child { border-bottom: 1px solid rgba(240,237,232,0.2); }
+
+.cta-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.4);
+}
+
+.cta-val {
+  font-size: 19px;
+  font-weight: 300;
+  color: var(--bg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.cta-val:hover { opacity: 0.7; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer span, footer a {
+  font-size: 12px;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+}
+footer a:hover { color: rgba(240,237,232,0.5); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .hero-bar, .hero-main, .hero-sub-row { padding-left: 24px; padding-right: 24px; }
+  .hero-sub-row { grid-template-columns: 1fr; }
+  .hero-contact-block { align-items: flex-start; }
+  .split { grid-template-columns: 1fr; min-height: auto; }
+  .split-img { height: 360px; }
+  .split-right { border-left: none; border-top: 1px solid var(--faint); }
+  .angebot-header { grid-template-columns: 1fr; padding: 48px 24px 32px; gap: 24px; }
+  .angebot-item { grid-template-columns: 48px 44px 1fr; padding-right: 24px; }
+  .ai-num { padding-left: 24px; font-size: 36px; }
+  .ai-right { display: none; }
+  .ai-body { padding: 28px 24px; }
+  .beweis, .story, .fuerwen { padding: 60px 24px; }
+  .beweis-top { grid-template-columns: 1fr; gap: 40px; }
+  .beweis-strip { grid-template-columns: 1fr; height: auto; }
+  .beweis-cell { height: 220px; }
+  .beweis-cell:not(:first-child) { display: none; }
+  .beweis-stats { grid-template-columns: 1fr 1fr; }
+  .story-grid { grid-template-columns: 1fr 1fr; }
+  .story-speaking { grid-template-columns: 1fr; height: auto; }
+  .story-speaking-img { height: 280px; }
+  .fw-grid { grid-template-columns: 1fr; }
+  .cta { padding: 72px 24px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">one more thing</a>
+  <div class="nav-r">
+    <a href="#angebot">Angebot</a>
+    <a href="#story">Hintergrund</a>
+    <a href="#kontakt" class="hi">Gespräch →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bar">
+    <span class="hero-bar-l">Wien · omt.at</span>
+    <span class="hero-bar-r">KI-Strategie · Build · Sparring</span>
+  </div>
+  <div class="hero-main">
+    <div class="hero-h">
+      <div>NICHT</div>
+      <div><span class="invert">DATEN.</span></div>
+      <div><span class="accent">TATEN.</span></div>
+    </div>
+  </div>
+  <div class="hero-sub-row">
+    <p class="hero-tagline">
+      <strong>Ideen gibt es genug.</strong><br>
+      Wir helfen dir, sie in die Welt zu bringen — mit KI als Werkzeug, mit Erfahrung als Kompass, mit Tempo das überrascht.
+    </p>
+    <div class="hero-contact-block">
+      <a href="mailto:jan@janhosa.com">jan@janhosa.com</a>
+      <a href="tel:+43XXXXXXXXX">+43 XXX XXX XXXX</a>
+    </div>
+  </div>
+</div>
+
+<!-- SPLIT: FOTO + QUOTE -->
+<div class="split">
+  <div class="split-img">
+    <img src="_SA_3160.jpg" alt="Jan Hosa">
+  </div>
+  <div class="split-right">
+    <div class="split-quote">
+      <p>IRGENDWANN<br>WOLLTEN WIR NICHT<br>IMMER NUR<br><em>DATEN PRODUZIEREN.</em></p>
+      <p class="split-quote-sub">Also haben wir aufgehört zu reden. Und angefangen zu bauen. Das war der Anfang von DO SOMETHING GREAT Society — und der Beginn von etwas das wir jetzt mit anderen teilen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ANGEBOT -->
+<div class="angebot" id="angebot">
+  <div class="angebot-header">
+    <div class="angebot-h">VIER<br>MOMENTE.</div>
+    <p class="angebot-intro">Vier Momente. Jeder kennt einen davon. Wir helfen dir, vom Moment zum Ergebnis zu kommen — konkret, schnell, ohne Umwege.</p>
+  </div>
+  <ul class="angebot-list">
+
+    <li class="angebot-item">
+      <span class="ai-num">01</span>
+      <div class="ai-icon">
+        <!-- Idea Sprint: punkt mit ausstrahlenden linien -->
+        <svg viewBox="0 0 36 36">
+          <circle cx="18" cy="18" r="3"/>
+          <line x1="18" y1="4" x2="18" y2="10"/>
+          <line x1="18" y1="26" x2="18" y2="32"/>
+          <line x1="4" y1="18" x2="10" y2="18"/>
+          <line x1="26" y1="18" x2="32" y2="18"/>
+          <line x1="8" y1="8" x2="12.5" y2="12.5"/>
+          <line x1="23.5" y1="23.5" x2="28" y2="28"/>
+          <line x1="28" y1="8" x2="23.5" y2="12.5"/>
+          <line x1="12.5" y1="23.5" x2="8" y2="28"/>
+        </svg>
+      </div>
+      <div class="ai-body">
+        <div class="ai-title">Du hast eine Idee.</div>
+        <p class="ai-desc">Und weißt nicht wo anfangen. Vielleicht ist sie noch unscharf, vielleicht hast du Angst dass sie nicht funktioniert. Wir nehmen sie ernst — stellen die unbequemen Fragen, bringen Struktur rein und bauen gemeinsam den ersten echten Schritt. Schnell, direkt, ohne Umwege.</p>
+      </div>
+      <div class="ai-right">Kein Konzeptpapier. Ein Ergebnis.</div>
+    </li>
+
+    <li class="angebot-item">
+      <span class="ai-num">02</span>
+      <div class="ai-icon">
+        <!-- Build Sprint: Winkelmaß -->
+        <svg viewBox="0 0 36 36">
+          <polyline points="6,30 6,6 30,6"/>
+          <polyline points="6,30 30,6"/>
+          <line x1="6" y1="14" x2="14" y2="14"/>
+          <line x1="14" y1="6" x2="14" y2="14"/>
+        </svg>
+      </div>
+      <div class="ai-body">
+        <div class="ai-title">Du hast ein Business.</div>
+        <p class="ai-desc">Und hörst überall KI. Aber was konkret — und was bringt es dir wirklich? Wir zeigen was funktioniert, für dein Business, deine Prozesse, dein Team. Wir bauen gemeinsam die Tools und Skills die du brauchst. Keine Abhängigkeit. Du verstehst am Ende was du tust — und warum.</p>
+      </div>
+      <div class="ai-right">Nicht Theorie. Können.</div>
+    </li>
+
+    <li class="angebot-item">
+      <span class="ai-num">03</span>
+      <div class="ai-icon">
+        <!-- Pitch Sprint: Pfeil durch Kreis -->
+        <svg viewBox="0 0 36 36">
+          <circle cx="16" cy="18" r="10"/>
+          <line x1="22" y1="18" x2="32" y2="18"/>
+          <polyline points="27,13 32,18 27,23"/>
+        </svg>
+      </div>
+      <div class="ai-body">
+        <div class="ai-title">Du willst mehr.</div>
+        <p class="ai-desc">Aus deiner Idee, deinem Business, deinen Prozessen. Schneller, schärfer, skalierbarer. Wir setzen KI dort ein wo sie wirklich hilft — und liefern etwas das heute schon funktioniert, nicht erst in sechs Monaten.</p>
+      </div>
+      <div class="ai-right">Nicht Versprechen. Ergebnisse.</div>
+    </li>
+
+    <li class="angebot-item dark">
+      <span class="ai-num">04</span>
+      <div class="ai-icon">
+        <!-- KI Sparring: zwei gegenüberstehende bögen -->
+        <svg viewBox="0 0 36 36">
+          <path d="M8,10 C8,10 4,18 8,26"/>
+          <path d="M28,10 C28,10 32,18 28,26"/>
+          <circle cx="18" cy="18" r="2.5"/>
+          <line x1="10" y1="18" x2="15.5" y2="18"/>
+          <line x1="20.5" y1="18" x2="26" y2="18"/>
+        </svg>
+      </div>
+      <div class="ai-body">
+        <div class="ai-title">Du willst einfach mal reden.</div>
+        <p class="ai-desc">Sortieren. Denken. Herausfinden ob eine Idee trägt — oder wie KI konkret in deinen Alltag passt. Kein Vortrag, keine Agenda. Ein ehrliches Gespräch mit jemandem der es selbst gerade macht. Und wenn du willst: hands-on KI-Einschulung statt Frontalvortrag.</p>
+      </div>
+      <div class="ai-right">Nicht reden. Verstehen.</div>
+    </li>
+
+  </ul>
+</div>
+
+<!-- BEWEIS -->
+<div class="beweis">
+  <div class="beweis-top">
+    <div class="beweis-h">KEIN<br>PITCH.<br><em>EIN LADEN.</em></div>
+    <div class="beweis-text">
+      <p>DO SOMETHING GREAT Society ist nicht in einer Präsentation entstanden. Es ist eine funktionierende Co-Working-Holzwerkstatt in Wien — mit eigener Marke, Community, Buchungssystem und Loyaltyprogramm.</p>
+      <p><strong>Konzipiert, aufgebaut, betrieben.</strong> Buchungssystem, Brand Manual, Partner-Websites, KI-gestützte Apps und Prozesse — alles entstanden, während der Laden lief. Das ist unser Proof of Concept.</p>
+      <a href="https://dosomethinggreat.work" target="_blank" class="dsgs-link">dosomethinggreat.work →</a>
+    </div>
+  </div>
+
+  <div class="beweis-strip">
+    <div class="beweis-cell">
+      <img src="jan_work-2.jpg" alt="DSGS Werkstatt">
+      <span class="beweis-cell-label">Werkstatt Wien 17</span>
+    </div>
+    <div class="beweis-cell">
+      <img src="jan_work-9.jpg" alt="Jan Hosa bei der Arbeit">
+      <span class="beweis-cell-label">In Aktion</span>
+    </div>
+    <div class="beweis-cell">
+      <img src="_SA_1992.jpg" alt="Jan Hosa in der Werkstatt">
+      <span class="beweis-cell-label">DSGS Werkstatt</span>
+    </div>
+  </div>
+
+  <div class="beweis-stats">
+    <div class="bs"><div class="bs-n">800m²</div><div class="bs-l">Werkstattfläche Wien</div></div>
+    <div class="bs"><div class="bs-n">1,3 Mio</div><div class="bs-l">Views, ein Reel</div></div>
+    <div class="bs"><div class="bs-n">~900</div><div class="bs-l">Live-Touchpoints / Jahr</div></div>
+    <div class="bs"><div class="bs-n">0</div><div class="bs-l">Agenturbudget beim Start</div></div>
+  </div>
+
+  <p class="beweis-aside">Neben DSGS: <em>KI-gestützte Apps, digitale Brand Manuals, Partner-Websites und maßgeschneiderte Tools</em> — entwickelt für echte Nutzung, nicht für Präsentationen.</p>
+</div>
+
+<!-- STORY -->
+<div class="story" id="story">
+  <div class="story-h">WARUM<br>WIR.</div>
+
+  <!-- Agentur-Logos -->
+  <div>
+    <span class="logo-strip-label">Stationen</span>
+    <div class="agency-logos logo-strip">
+      <span class="agency-logo">Ogilvy</span>
+      <span class="agency-logo">BBDO Wien</span>
+      <span class="agency-logo">medienhaus+partner</span>
+      <span class="agency-logo">ProSiebenSat.1 PULS 4</span>
+      <span class="agency-logo">OCEAN</span>
+      <span class="agency-logo">one more thing GmbH</span>
+    </div>
+  </div>
+
+  <!-- Speaking photo -->
+  <div class="story-speaking">
+    <div class="story-speaking-img">
+      <img src="Strategie_Austria_6_10_2021-039.jpg" alt="Jan Hosa speaking">
+    </div>
+    <div class="story-speaking-text">
+      <h3>Wir reden nicht nur.<br>Wir machen.</h3>
+      <p>Vorträge, Workshops, Sparrings — wir teilen was wir wirklich wissen. Nicht was gut klingt. Und dann setzen wir es um.</p>
+    </div>
+  </div>
+
+  <div class="story-grid">
+    <div class="sg">
+      <span class="sg-era">Marke · Medien · Kreation</span>
+      <h3>Wie Menschen & Marken wirklich funktionieren</h3>
+      <p>30+ Jahre mit BMW, Magenta, BAT, JTI, Ogilvy, BBDO. Wir wissen, wie Botschaften wirken — und warum die meisten es falsch angehen.</p>
+    </div>
+    <div class="sg">
+      <span class="sg-era">Digital · Innovation · KI</span>
+      <h3>Wie digitale Innovation wirklich funktioniert</h3>
+      <p>Startup-Erfahrung, Corporate Innovation, KI-Expertise. Wir wissen was funktioniert — und was nur gut klingt auf einer Folie.</p>
+    </div>
+    <div class="sg">
+      <span class="sg-era">Gründer · Macher</span>
+      <h3>Wie Ideen echte Unternehmen werden</h3>
+      <p>DSGS, one more thing GmbH, OCEAN Kreativnetzwerk, nextone — aufgebaut mit allem was dazugehört: Hochs, Fehler, Learnings.</p>
+    </div>
+    <div class="sg">
+      <span class="sg-era">KI · Heute · Täglich</span>
+      <h3>KI die wirklich funktioniert</h3>
+      <p>Wir nutzen KI täglich operativ — nicht um darüber zu reden, sondern um damit zu bauen. In echten Projekten, mit echten Ergebnissen.</p>
+    </div>
+  </div>
+
+  <p class="big-quote">
+    "KI kann man nur effizient nutzen,<br>
+    wenn man weiß was man will —<br>
+    <em>und weiß, wie man die richtigen Fragen stellt.</em>"
+  </p>
+</div>
+
+<!-- FÜR WEN -->
+<div class="fuerwen">
+  <div class="fw-h">FÜR WEN.</div>
+  <div class="fw-grid">
+    <div class="fw-card">
+      <h3>Founders &amp; Early Stage</h3>
+      <p>Du hast eine Idee und willst wissen, ob sie fliegt — <strong>bevor du alles drauf setzt.</strong> Kein Umweg, kein Overhead. Der Deal muss passen — das erste Gespräch kostet nichts.</p>
+    </div>
+    <div class="fw-card">
+      <h3>Unternehmen &amp; Teams</h3>
+      <p>Ein funktionierendes Business, das das nächste Ding sucht. <strong>Neue Produkte, neue Prozesse, neue Möglichkeiten</strong> — mit KI als echtem Hebel. Nicht als Versprechen. Als Ergebnis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta" id="kontakt">
+  <div class="cta-inner">
+    <div class="cta-h">EUER<br>ONE<br>MORE<br>THING.</div>
+    <div>
+      <p class="cta-note">Kein Formular. Kein Funnel. Einfach melden — und wir reden. 30 Minuten reichen für den Anfang.</p>
+      <div>
+        <div class="cta-contact-item">
+          <span class="cta-label">Mail</span>
+          <a href="mailto:jan@janhosa.com" class="cta-val">jan@janhosa.com</a>
+        </div>
+        <div class="cta-contact-item">
+          <span class="cta-label">Telefon</span>
+          <a href="tel:+43XXXXXXXXX" class="cta-val">+43 XXX XXX XXXX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>one more thing GmbH · Wien · 2026</span>
+  <a href="#">one more thing GmbH</a>
+</footer>
+
+</body>
+</html>
